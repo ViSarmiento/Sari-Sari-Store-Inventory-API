@@ -38,6 +38,12 @@ def get_items():
       return jsonify({"error": "No items found"}), 404
    return jsonify({"items": result}), 200
 
+@sari_inv.route("/items/<int:item_id>", methods=["GET"])
+def get_item(item_id):
+    item = find_item(item_id)
+    if item is None:
+        return jsonify({"error": "Item not found"}), 404
+    return jsonify(item), 200
 
 # ============================================================
 # ENDPOINT 3 - POST /items  (Member B)
