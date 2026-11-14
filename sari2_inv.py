@@ -21,3 +21,30 @@ def is_number(value):
 
 def is_integer(value):
   return isinstance(value, int) and not isinstance(value, bool)
+
+# ============================================================
+# ENDPOINTS 1 & 2 - GET /items and GET /items/<id>  (Member A)
+# ============================================================
+# TODO: Member A
+
+
+# ============================================================
+# ENDPOINT 3 - POST /items  (Member B)
+# ============================================================
+# TODO: Member B
+
+
+# ============================================================
+# ENDPOINT 4 - PUT /items/<id>  (Member C)
+# ============================================================
+# TODO: Member C
+
+
+# ============================================================
+# ENDPOINT 5 - DELETE /items/<id>  (Member D)
+# ============================================================
+# TODO: Member D
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
