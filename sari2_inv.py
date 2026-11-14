@@ -1,6 +1,6 @@
 ### Sari-Sari Store Inventory API
 
-From flask import Flask, jsonify, request
+from flask import Flask, jsonify, request
 
 sari_inv = Flask(__name__)
 
@@ -26,6 +26,17 @@ def is_integer(value):
 # ENDPOINTS 1 & 2 - GET /items and GET /items/<id>  (Member A)
 # ============================================================
 # TODO: Member A
+
+@sari_inv.route("/items", methods=["GET"])
+def get_items():
+   category = request.args.get("category")
+   result = [
+      item for item in items
+      if not category or item["category"].lower() == category.lower()
+   ]
+   if not result:
+      return jsonify({"error": "No items found"}), 404
+   return jsonify({"items": result}), 200
 
 
 # ============================================================
