@@ -1,6 +1,6 @@
 ### Sari-Sari Store Inventory API
 
-From flask import Flask, jsonify, request
+from flask import Flask, jsonify, request
 
 sari_inv = Flask(__name__)
 
@@ -10,7 +10,7 @@ items = [
   {"id": 3, "name": "Skyflakes", "category": "Crackers", "price": 8, "stock": 28},
   {"id": 4, "name": "Milo", "category": "Powdered Drink", "price": 15, "stock": 14},
 ]
-next_id = 4
+next_id = 5
 
 
 def find_item(item_id):
