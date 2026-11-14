@@ -10,7 +10,7 @@ items = [
   {"id": 3, "name": "Skyflakes", "category": "Crackers", "price": 8, "stock": 28},
   {"id": 4, "name": "Milo", "category": "Powdered Drink", "price": 15, "stock": 14},
 ]
-next_id = 4
+next_id = 5
 
 
 def find_item(item_id):
