@@ -83,6 +83,30 @@ def add_item():
 # ============================================================
 # TODO: Member C
 
+@sari_inv.route("/items/<int:item_id>", methods=["PUT"])
+def update_item(item_id):
+  """Update the price and/or stock of one item."""
+  item = find_item(item_id)
+  if item is None:                          # 404: item doesn't exist
+    return jsonify({"error": "Item not found"}), 404
+
+  data = request.get_json(silent=True)      # read the JSON body
+  if not isinstance(data, dict) or ("price" not in data and "stock" not in data):
+    return jsonify({"error": "Send price and/or stock"}), 400
+  
+
+  # Use the new value if sent, otherwise keep the old one
+  price = data.get("price", item["price"])
+  stock = data.get("stock", item["stock"])
+
+  if not is_number(price) or price < 0:     # 400: bad price
+    return jsonify({"error": "price must be a non-negative number"}), 400
+  if not is_integer(stock) or stock < 0:    # 400: bad stock
+    return jsonify({"error": "stock must be a non-negative integer"}), 400
+
+  item["price"] = price                     # all good, save the changes
+  item["stock"] = stock
+  return jsonify(item), 200                 # 200: return the updated item
 
 # ============================================================
 # ENDPOINT 5 - DELETE /items/<id>  (Member D)
