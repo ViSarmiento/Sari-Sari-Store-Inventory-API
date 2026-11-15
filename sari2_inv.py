@@ -37,7 +37,7 @@ def is_integer(value):
 # ============================================================
 # ENDPOINT 4 - PUT /items/<id>  (Member C)
 # ============================================================
-#andrei CCCCCCC
+# TODO: Member C
 
 @sari_inv.route("/items/<int:item_id>", methods=["PUT"])
 def update_item(item_id):
