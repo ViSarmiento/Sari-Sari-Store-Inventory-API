@@ -45,10 +45,12 @@ def get_item(item_id):
         return jsonify({"error": "Item not found"}), 404
     return jsonify(item), 200
 
-# ============================================S================
+
+# ============================================================
 # ENDPOINT 3 - POST /items  (Member B)
 # ============================================================
 # TODO: Member B
+
 @sari_inv.route("/items", methods=["POST"])
 def add_item():
   global next_id
