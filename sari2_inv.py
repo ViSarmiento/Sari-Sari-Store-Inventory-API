@@ -27,6 +27,23 @@ def is_integer(value):
 # ============================================================
 # TODO: Member A
 
+@sari_inv.route("/items", methods=["GET"])
+def get_items():
+   category = request.args.get("category")
+   result = [
+      item for item in items
+      if not category or item["category"].lower() == category.lower()
+   ]
+   if not result:
+      return jsonify({"error": "No items found"}), 404
+   return jsonify({"items": result}), 200
+
+@sari_inv.route("/items/<int:item_id>", methods=["GET"])
+def get_item(item_id):
+    item = find_item(item_id)
+    if item is None:
+        return jsonify({"error": "Item not found"}), 404
+    return jsonify(item), 200
 
 # ============================================================
 # ENDPOINT 3 - POST /items  (Member B)
