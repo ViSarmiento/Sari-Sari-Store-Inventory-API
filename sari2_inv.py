@@ -111,8 +111,14 @@ def update_item(item_id):
 # ============================================================
 # ENDPOINT 5 - DELETE /items/<id>  (Member D)
 # ============================================================
-# TODO: Member D
-
+#TODO: Member D
+@sari_inv.route("/items/<int:item_id>", methods=["DELETE"])
+def delete_item(item_id):
+    for item in items:
+        if item["id"] == item_id:
+            items.remove(item)
+            return jsonify({"message": f"Item {item_id} deleted"}), 200
+    return jsonify({"error": "Item not found"}), 404
 
 if __name__ == "__main__":
     sari_inv.run(debug=True, port=5000)
