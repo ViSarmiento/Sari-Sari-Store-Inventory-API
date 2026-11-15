@@ -45,10 +45,37 @@ def get_item(item_id):
         return jsonify({"error": "Item not found"}), 404
     return jsonify(item), 200
 
-# ============================================================
+# ============================================S================
 # ENDPOINT 3 - POST /items  (Member B)
 # ============================================================
 # TODO: Member B
+@sari_inv.route("/items", methods=["POST"])
+def add_item():
+  global next_id
+  data = request.get_json(silent=True) or {}
+
+  name = data.get("name")
+  price = data.get("price")
+  stock = data.get("stock")
+
+  if not isinstance(name, str) or not name.strip():
+    return jsonify({"error": "name is required and must be a non-empty string"}), 400
+  if not is_number(price) or price < 0:
+    return jsonify({"error": "price is required and must be a non-negative number"}), 400
+  if not is_integer(stock) or stock < 0:
+    return jsonify({"error": "stock is required and must be a non-negative integer"}), 400
+
+  item = {
+    "id" : next_id,
+    "name" : name.strip(),
+    "category" : data.get("category", "General"),
+    "price" : price,
+    "stock" : stock,
+  }
+
+  items.append(item)
+  next_id += 1
+  return jsonify(item), 201  
 
 
 # ============================================================
